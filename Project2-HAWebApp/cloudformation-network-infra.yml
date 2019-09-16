@@ -194,3 +194,65 @@ Resources:
         Properties:
             RouteTableId: !Ref PrivateRouteTable1
             SubnetId: !Ref PrivateSubnet1
+
+Outputs: 
+
+    VPC: 
+        Description: A reference to the created VPC
+        Value: !Ref VPC
+        Export:
+            Name: !Sub ${EnvironmentName}-VPCID
+
+    VPCPublicRouteTable:
+        Description: Public Routing
+        Value: !Ref PublicRouteTable
+        Export:
+            Name: !Sub ${EnvironmentName}-PUB-RT
+
+    VPCPrivateRouteTable0:
+        Description: Private Routing AZ0
+        Value: !Ref PrivateRouteTable0
+        Export:
+            Name: !Sub ${EnvironmentName}-PRI0-RT
+
+    VPCPrivateRouteTable1:
+        Description: Private Routing AZ1
+        Value: !Ref PrivateRouteTable1
+        Export:
+            Name: !Sub ${EnvironmentName}-PRI1-RT
+
+    PublicSubnets:
+        Description: A list of the public subnets
+        Value: !Join [ ",", [ !Ref PublicSubnet0, !Ref PublicSubnet1 ]]
+        Export:
+            Name: !Sub ${EnvironmentName}-PUB-NETS
+
+    PrivateSubnets:
+        Description: A list of the private subnets
+        Value: !Join [ ",", [ !Ref PrivateSubnet0, !Ref PrivateSubnet1 ]]
+        Export:
+            Name: !Sub ${EnvironmentName}-PRIV-NETS
+
+    PublicSubnet0:
+            Description: A reference to the public subnet in the 1st Availability Zone
+            Value: !Ref PublicSubnet0
+            Export:
+                Name: !Sub ${EnvironmentName}-PUB0-SN
+
+    PublicSubnet1: 
+        Description: A reference to the public subnet in the 2nd Availability Zone
+        Value: !Ref PublicSubnet1
+        Export:
+            Name: !Sub ${EnvironmentName}-PUB1-SN
+
+    PrivateSubnet0:
+        Description: A reference to the private subnet in the 1st Availability Zone
+        Value: !Ref PrivateSubnet0
+        Export:
+            Name: !Sub ${EnvironmentName}-PRI0-SN
+
+    PrivateSubnet1: 
+        Description: A reference to the private subnet in the 2nd Availability Zone
+        Value: !Ref PrivateSubnet1
+        Export:
+            Name: !Sub ${EnvironmentName}-PRI1-SN  
