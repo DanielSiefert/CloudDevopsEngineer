@@ -243,12 +243,12 @@ Resources:
                 Fn::Base64: !Sub |
                     #!/bin/bash
                     apt-get update -y
-                    apt-get install unzip awscli -y
-                    apt-get install apache2 -y
+                    apt-get install unzip apache2 -y
                     systemctl start apache2.service
                     cd /var/www/html
-                    aws s3 cp s3://udacity-demo-1/udacity.zip .
+                    wget http://rnmpja1iwbjxsceqc39x73elplyb.s3-website.us-east-2.amazonaws.com/udacity.zip
                     unzip -o udacity.zip
+                    rm udacity.zip
             ImageId: ami-005bdb005fb00e791
             SecurityGroups:
             - Ref: WebServerSecurityGroup
